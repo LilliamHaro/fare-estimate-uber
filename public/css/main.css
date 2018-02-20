@@ -1,0 +1,89 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: font-family: 'Raleway', sans-serif;
+}
+
+.bg-white {
+  background-color: white;
+}
+.colo-black {
+  color: black;
+}
+li {
+  list-style: none;
+  display: inline;
+  margin-right: 18px;
+  font-family: font-family: 'Raleway', sans-serif;
+}
+.pd-nav {
+  padding: 15px 5%;
+}
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+}
+.bg-sky {
+  background-color: #a6cbe3;
+}
+.input {
+  display: block;
+  margin-bottom: 15px;
+  width: 300px;
+  height: 35px;
+  padding: 8px;
+}
+.margin-bottom-0 {
+  margin-bottom: 0;
+}
+.pd-form {
+  padding: 35px 35px 35px 35px ;
+  background-color: white;
+
+}
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 453;
+}
+.pd-25 {
+  padding: 25px;
+}
+.border-radius {
+  border-radius: 5px;
+}
+.display-block {
+  display: inline-block;
+}
+hr {
+  width: 300px;
+}
+.word-wracp {
+  word-wrap: break-word;
+}
+.width-70 {
+  width: 70%;
+}
+.margin-bottom-25 {
+  margin-bottom: 25px;
+}
+.mg-top-65 {
+  margin-top: 85px;
+}
+.mg-left-15 {
+  margin-left: 10px;
+}
+.margin-auto {
+  width: 100px;
+  margin: auto;
+
+}
+.map {
+  width: 100%;
+  height: 100vh;
+  float:right;
+}
