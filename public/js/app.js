@@ -43,9 +43,17 @@ function initMap() {
         var distanceRoute = result.routes[0].legs[0].distance.value/1000;
         // var duracion = result.routes[0].legs[0].duration.text;
         var costo = (distanceRoute*2.00).toFixed(2);
+        for (var i = 0; i < data.prices.length; i++) {
+          var name = data.prices[i].localized_display_name;
+          var distance = data.prices[i].distance;
+          var priceEstimate = (data.prices[i].high_estimate + data.prices[i].low_estimate)/2;
+          var costo = ((distanceRoute/distance)*priceEstimate).toFixed(2)+' PEN';
+          console.log(name + ':  ' + costo);
 
-        document.getElementById('showCost').innerHTML="";
-        document.getElementById('showCost').innerHTML= '<strong>Precio Calculado para la ruta:</strong>  s/' + costo;
+          var div = document.createElement('div');
+          div.innerHTML = name + ': '+costo
+          document.getElementById('showCost').appendChild(div);
+        }
         directionsDisplay.setDirections(result);
         } else {
           alert('Algo ha salido mal');
