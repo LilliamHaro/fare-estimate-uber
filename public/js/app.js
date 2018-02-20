@@ -60,29 +60,32 @@ function initMap() {
     });
     document.getElementById('myPosition').addEventListener('click', function(event) {
       event.preventDefault();
-      if (navigator.geolocation) {
-        // obteniendo la posicion actual del usuario
-        navigator.geolocation.getCurrentPosition(function(position) {
-        // ubicando el marcador con la posición actual del usuario
-          coordenadas = position.coords;
-          marker = new google.maps.Marker({
-            position: {
-              lat: coordenadas.latitude,
-              lng: coordenadas.longitude
-            },
-            map: map,
-            // cambiando marcador default por imagen de bicicleta
-            icon: 'assets/bicicleta.png'
-          });
-          map.setZoom(18);
-          // ubicando el centro del mapa con la latitud y la longitud
-          map.setCenter({
-            lat: coordenadas.latitude,
-            lng: coordenadas.longitude});
-        }, function(error) {
-          alert('Ocurrio un error inesperado');
+      var myUbication = '';
+  function ubicacion() {
+    if (navigator.geolocation) {
+      function localizacion(position) {
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
+        console.log(lat + '' + lng);
+        var geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(lat, lng);
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
+            myUbication = results[1].formatted_address;
+            document.getElementById('originPoint').value = myUbication;
+          } else {
+            alert('ocurrio un error inesperado');
+          }
         });
+      };
+      function error() {
+        alert('ocurrio un error inesperado');
       }
+      navigator.geolocation.getCurrentPosition(localizacion, error);
+    }
+  };
+  ubicacion();
+
     });
   });
 }
