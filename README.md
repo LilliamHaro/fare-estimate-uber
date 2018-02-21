@@ -8,4 +8,4 @@
   - Bootstrap
   - Api de google maps, Uber
 
-![RECURSOS](assets/uber.png)
+![RECURSOS](public/assets/uber.png)
