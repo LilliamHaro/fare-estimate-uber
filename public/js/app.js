@@ -40,23 +40,87 @@ function initMap() {
       };
       directionsService.route(directionsRequest, function(result, status) {
         if (status === 'OK') {
-        var distanceRoute = result.routes[0].legs[0].distance.value/1000;
-        // var duracion = result.routes[0].legs[0].duration.text;
-        var costo = (distanceRoute*2.00).toFixed(2);
-        for (var i = 0; i < data.prices.length; i++) {
-          var name = data.prices[i].localized_display_name;
-          var distance = data.prices[i].distance;
-          var priceEstimate = (data.prices[i].high_estimate + data.prices[i].low_estimate)/2;
-          var costo = ((distanceRoute/distance)*priceEstimate).toFixed(2)+' PEN';
-          console.log(name + ':  ' + costo);
+      //     var arr =[];
+      //
+      //     function geocode() {
+      //     var address = document.getElementById('destinyPoint').value;
+      //     var geocoder = new google.maps.Geocoder();
+      //     geocoder.geocode({
+      //     'address': address,
+      //     'partialmatch': true
+      //   }, geocodeResult);
+      //
+      //   function geocodeResult(results, status) {
+      //     if (status == 'OK' && results.length > 0) {
+      //       var latDestiny = results[0].geometry.location.lat();
+      //       var lngDestiny = results[0].geometry.location.lng();
+      //       arr = [latDestiny,lngDestiny];
+      //       return arr;
+      //     } else {
+      //       alert("Geocode was not successful for the following reason: " + status);
+      //     }
+      //   }
+      // }
+          // // geocode();
+          // console.log(geocode());
 
-          var div = document.createElement('div');
-          div.innerHTML = name + ': '+costo
-          document.getElementById('showCost').appendChild(div);
+        // var distanceRoute = result.routes[0].legs[0].distance.value/1000;
+        // var duracion = result.routes[0].legs[0].duration.text;
+        // var costo = (distanceRoute*2.00).toFixed(2);
+        // for (var i = 0; i < data.prices.length; i++) {
+        //   var name = data.prices[i].localized_display_name;
+        //   var distance = data.prices[i].distance;
+        //   var priceEstimate = (data.prices[i].high_estimate + data.prices[i].low_estimate)/2;
+        //   var costo = ((distanceRoute/distance)*priceEstimate).toFixed(2)+' PEN';
+        //   console.log(name + ':  ' + costo);
+        //
+        //   var div = document.createElement('div');
+        //   div.innerHTML = name + ': '+costo
+        //   document.getElementById('showCost').appendChild(div);
+        // }
+        var destinyLat = result.routes[0].bounds.f.b;
+        var destinyLng = result.routes[0].bounds.b.f;
+        var originLat = result.routes[0].bounds.f.f;
+        var originLgn = result.routes[0].bounds.b.b;
+        getNews(destinyLat,destinyLng,originLat,originLgn);
+
+        function getNews(destinyLat,destinyLng,originLat,originLgn) {
+          // instanciando el objeto XMLHttpRequest para el funcionamiento de ajax
+          const priceRequest = new XMLHttpRequest();
+
+          priceRequest.open('GET', 'https://cors-anywhere.herokuapp.com/https://api.uber.com/v1.2/estimates/price?server_token=G1QV-BUwGiR6iwzCCO8aGWqwSFsdFb0qF8NOcGxR&start_latitude='+originLat+'&start_longitude='+originLgn+'&end_latitude='+destinyLat+'&end_longitude='+destinyLng);
+          // funciones
+          priceRequest.onload = addPrice;
+          priceRequest.onerror = handleError;
+          priceRequest.send();
         }
+
+        function handleError() {
+          console.log('se ha presentado un error');
+        }
+
+        function addPrice() {
+          const data = JSON.parse(this.responseText);
+          const response = data.prices;
+          let centinel = 0;
+          var distanceRoute = result.routes[0].legs[0].distance.value/1000;
+          response.forEach(function(character) {
+            let name= character.localized_display_name;
+            var distance = character.distance;
+            var priceEstimate = (character.high_estimate + character.low_estimate)/2;
+            var costo = ((distanceRoute/distance)*priceEstimate).toFixed(2)+' soles';
+            console.log(name + ':  ' + costo);
+
+            var div = document.createElement('div');
+            div.innerHTML = '<strong>'+ name +'</strong>'+ ': '+costo;
+            document.getElementById('showCost').appendChild(div);
+            // console.log(nameCharacter);
+          });
+        };
+        console.log(originLat +'---'+ originLgn +'---'+destinyLat+'---'+destinyLng);
         directionsDisplay.setDirections(result);
         } else {
-          alert('Algo ha salido mal');
+          alert('Algo ha salido mal, verifica que las direcciones se puedan recorrer en auto');
         }
       });
       directionsDisplay.setMap(map);

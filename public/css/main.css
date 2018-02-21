@@ -25,15 +25,28 @@ li {
   font-weight: bold;
   font-size: 18px;
 }
+.font-size-20 {
+  font-size: 20px;
+}
+.pd {
+  padding: 25px;
+  background-color: white
+}
 .bg-sky {
   background-color: #a6cbe3;
 }
 .input {
   display: block;
   margin-bottom: 15px;
-  width: 300px;
+  /* width: 300px; */
   height: 35px;
   padding: 8px;
+}
+.mg-top-25{
+  margin-top: 25px;
+}
+.width-100 {
+  width: 100px;
 }
 .margin-bottom-0 {
   margin-bottom: 0;
@@ -75,7 +88,7 @@ hr {
   margin-top: 85px;
 }
 .mg-left-15 {
-  margin-left: 10px;
+  margin-left: 0px;
 }
 .margin-auto {
   width: 100px;
@@ -86,4 +99,9 @@ hr {
   width: 100%;
   height: 100vh;
   float:right;
+}
+@media (min-width: 768px) {
+  .mg-left-15 {
+    margin-left: 10px;
+  }
 }

@@ -22,25 +22,27 @@
 
    <div class="container-fluid">
    <div class="row bg-sky ">
-     <div class="col-md-6  ">
-       <div class="pd-form display-block border-radius word-wracp margin-bottom-25 mg-top-65 width-70 mg-left-15">
-         <h2>Estimador de tarifas Uber</h2>
-¿Cuál es el costo de viajes Uber en tu ciudad? Calcula una tarifa para tu próximo viaje. Simplemente ingresa un punto de partida y un destino para comenzar.
+     <div class="col-md-6 col-xs-12 ">
+       <div class=" pd display-block border-radius word-wracp margin-bottom-25 mg-top-65 col-md-6 mg-left-15">
+         <p class="font-size-20">Estimador de Tarifas UBER</p>
+¿Cuál es el costo de viajes Uber en tu ciudad? Calcula una tarifa para tu próximo viaje.
        </div>
-       <div class="pd-form display-block border-radius width-70 mg-left-15 margin-bottom-25">
+       <div class="pd display-block border-radius col-md-6 col-xs-12 mg-left-15 margin-bottom-25">
 
-         <input class="input" id="originPoint" type="text" name="" value="" placeholder="Lugar de origen">
-         <input class="input margin-bottom-0" id="destinyPoint" type="text" name="" value="" placeholder="Lugar de destino"> <button class="btn btn-white margin-auto"  id="btn" type="button" name="button">Trazar ruta</button>
+           <input class="input col-md-12 col-xs-12" id="originPoint" type="text" name="" value="" placeholder="Lugar de origen">
+           <input class="input col-md-11 col-xs-12 margin-bottom-0 " id="destinyPoint" type="text" name="" value="" placeholder="Lugar de destino">
+
+         <button class="btn btn-primary margin-bottom-25 mg-top-25 "  id="btn" type="button" name="button">Trazar ruta</button>
+         <button class="btn btn-white "  id="myPosition" type="button" name="button">Usar mi ubicacion como partida</button>
 
        </div>
        <!-- <div class="">
          <button class="btn btn-white"  id="btn" type="button" name="button">Trazar ruta</button>
        </div> -->
-       <div id="showCost" class="pd-form display-block border-radius width-70 mg-left-15">
-         <hr>
+       <div id="showCost" class="pd display-block border-radius col-md-6 col-xs-12 mg-left-15 margin-bottom-25">
 
        </div>
-       <button class="" id="myPosition" type="button" name="button">Mi posicion actual</button>
+
      </div>
     <div class="col-md-6">
      <div id="map" class="map"></div>
