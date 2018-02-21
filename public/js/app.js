@@ -104,11 +104,11 @@ function initMap() {
           const data = JSON.parse(this.responseText);
           const response = data.prices;
           let centinel = 0;
-          var distanceRoute = result.routes[0].legs[0].distance.value/1000;
+          var distanceRoute = (result.routes[0].legs[0].distance.value)/1000;
           response.forEach(function(character) {
             let name= character.localized_display_name;
             var distance = character.distance;
-            var priceEstimate = (character.high_estimate + character.low_estimate)/2;
+            var priceEstimate = character.low_estimate;
             var costo = ((distanceRoute/distance)*priceEstimate).toFixed(2)+' soles';
             console.log(name + ':  ' + costo);
 
