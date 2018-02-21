@@ -88,7 +88,7 @@ function initMap() {
           // instanciando el objeto XMLHttpRequest para el funcionamiento de ajax
           const priceRequest = new XMLHttpRequest();
 
-          priceRequest.open('GET', 'https://cors-anywhere.herokuapp.com/https://api.uber.com/v1.2/estimates/price?server_token=G1QV-BUwGiR6iwzCCO8aGWqwSFsdFb0qF8NOcGxR&start_latitude='+originLat+'&start_longitude='+originLgn+'&end_latitude='+destinyLat+'&end_longitude='+destinyLng);
+          priceRequest.open('GET', 'https://cors-anywhere.herokuapp.com/https://api.uber.com/v1.2/estimates/price?server_token=G1QV-BUwGiR6iwzCCO8aGWqwSFsdFb0qF8NOcGxR&start_latitude=-12.122932&start_longitude=-77.014693&end_latitude=-12.160327&end_longitude=-76.967643');
           // funciones
           priceRequest.onload = addPrice;
           priceRequest.onerror = handleError;
@@ -100,6 +100,7 @@ function initMap() {
         }
 
         function addPrice() {
+          $('#showCost').empty();
           const data = JSON.parse(this.responseText);
           const response = data.prices;
           let centinel = 0;
